@@ -6,7 +6,7 @@ const btn =
 export default function Home() {
   return (
     <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-      <div className="max-w-2xl">
+      <div className="flex flex-col align-center justify-center text-center max-w-2xl mx-auto">
         <h1 className="text-3xl font-bold sm:text-5xl sm:leading-tight">
           Know what's on your shelves.
         </h1>
@@ -15,7 +15,7 @@ export default function Home() {
           sales, so you always know what to reorder.
         </p>
 
-        <div className="mt-8 flex flex-wrap gap-3">
+        <div className="mt-8 flex justify-center flex-wrap gap-3">
           <Link
             to="/register"
             className={`${btn} bg-primary text-white hover:bg-primary-hover`}

@@ -15,7 +15,7 @@
   /* Surfaces & text */
   --color-page: #f6f8f4; /* Mist */
   --color-surface: #ffffff; /* White */
-  --color-border: #dde5da; /* Fern Mist */
+  --color-border-color: #dde5da; /* Fern Mist */
   --color-ink: #1f2a24; /* Charcoal Green */
   --color-muted: #5f6f65; /* Stone */
 
@@ -113,7 +113,7 @@
   /* Visible focus on every interactive element (accessibility note in design system) */
   :focus-visible {
     outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+    outline-offset: 1px;
     border-radius: var(--radius-sm);
   }
 
