@@ -3,6 +3,7 @@ import PublicLayout from "../layouts/PublicLayout";
 import Home from "../pages/home/Home";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
+import NotFound from "../pages/not-found/NotFound";
 
 export default function AppRoutes() {
   return (
@@ -14,7 +15,7 @@ export default function AppRoutes() {
       </Route>
 
       {/* Unknown URLs go to the home page */}
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

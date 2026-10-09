@@ -1,4 +1,4 @@
-export default function Input({ name, placeholder, type = "text"}) {
+export default function Input({ name, placeholder, value, onChange, type = "text" }) {
   return (
     <>
       <label
@@ -13,6 +13,8 @@ export default function Input({ name, placeholder, type = "text"}) {
         id={name}
         type={type}
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
       />
     </>
   );

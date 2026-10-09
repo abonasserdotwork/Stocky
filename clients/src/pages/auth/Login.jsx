@@ -7,12 +7,15 @@ import PasswordInput from "../../components/PasswordInput";
 
 export default function Login() {
   const [errors, setErrors] = useState({});
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
 
   function handleSubmit(event) {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const emailValue = formData.get("Email")?.toString().trim() ?? "";
-    const passwordValue = formData.get("Password")?.toString() ?? "";
+    const emailValue = user.email.trim();
+    const passwordValue = user.password.trim();
     const nextErrors = {};
 
     if (!emailValue) {
@@ -45,12 +48,16 @@ export default function Login() {
         <Input
           name="Email"
           placeholder="Enter your email"
+          value={user.email}
+          onChange={(e) => setUser({ ...user, email: e.target.value } )}
           type="text"
         />
         {errors.email && <Alert message={errors.email} />}
         <PasswordInput
           name="Password"
           placeholder="Enter your password"
+          value={user.password}
+          onChange={(e) => setUser({ ...user, password: e.target.value } )}
         />
         {errors.password && <Alert message={errors.password} />}
         <Button
