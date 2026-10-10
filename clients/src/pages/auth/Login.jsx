@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Alert from "../../components/Alert";
-import AuthCard from "../../components/AuthCard";
-import Button from "../../components/Button";
-import Input from "../../components/Input";
-import PasswordInput from "../../components/PasswordInput";
+import Alert from "../../components/ui/Alert";
+import AuthCard from "../../components/ui/AuthCard";
+import Button from "../../components/ui/Button";
+import Input from "../../components/ui/Input";
+import PasswordInput from "../../components/ui/PasswordInput";
 
 export default function Login() {
   const [errors, setErrors] = useState({});
@@ -34,7 +34,7 @@ export default function Login() {
 
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
-    
+
     // Check the email and password against the database, then log the user in.
   }
 
@@ -49,7 +49,7 @@ export default function Login() {
           name="Email"
           placeholder="Enter your email"
           value={user.email}
-          onChange={(e) => setUser({ ...user, email: e.target.value } )}
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
           type="text"
         />
         {errors.email && <Alert message={errors.email} />}
@@ -57,7 +57,7 @@ export default function Login() {
           name="Password"
           placeholder="Enter your password"
           value={user.password}
-          onChange={(e) => setUser({ ...user, password: e.target.value } )}
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
         />
         {errors.password && <Alert message={errors.password} />}
         <Button
