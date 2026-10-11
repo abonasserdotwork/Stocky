@@ -1,80 +1,62 @@
 import { useState } from "react";
-import Alert from "../../components/Alert";
+import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import AuthCard from "../../components/AuthCard";
-import Button from "../../components/Button";
+import Alert from "../../components/Alert";
 import Input from "../../components/Input";
 import PasswordInput from "../../components/PasswordInput";
+import Button from "../../components/Button";
+import { loginSchema } from "../../schemas/authSchemas";
 
 export default function Login() {
-  const [errors, setErrors] = useState({});
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  });
+  const [serverError, setServerError] = useState("");
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const emailValue = user.email.trim();
-    const passwordValue = user.password.trim();
-    const nextErrors = {};
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({ resolver: zodResolver(loginSchema) });
 
-    if (!emailValue) {
-      nextErrors.email = "Email is required!";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
-      nextErrors.email = "Invalid email address! Please enter a valid email.";
-    }
-
-    if (!passwordValue) {
-      nextErrors.password = "Password is required!";
-    } else if (passwordValue.length < 6) {
-      nextErrors.password = "Password must be at least 6 characters long.";
-    } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(passwordValue)) {
-      nextErrors.password = "Password must contain at least one uppercase letter, one lowercase letter, and one digit.";
-    }
-
-    setErrors(nextErrors);
-    if (Object.keys(nextErrors).length > 0) return;
-    
-    // Check the email and password against the database, then log the user in.
-  }
+  // Runs only when the form passes all schema rules
+  const onSubmit = (data) => {
+    console.log("Login data:", data);
+    setServerError("Login is not connected to the server yet.");
+  };
 
   return (
-    <AuthCard>
-      <h1 className="text-2xl font-bold text-center mb-4">Log in</h1>
-      <p className="text-muted text-center">
-        Welcome back. Enter your details to continue.
-      </p>
-      <form method="POST" className="mt-6" onSubmit={handleSubmit} noValidate>
+    <AuthCard title="Log in" subtitle="Welcome back to Stockly!">
+      <Alert>{serverError}</Alert>
+
+      <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
         <Input
-          name="Email"
-          placeholder="Enter your email"
-          value={user.email}
-          onChange={(e) => setUser({ ...user, email: e.target.value } )}
-          type="text"
+          label="Email"
+          type="email"
+          autoComplete="email"
+          error={errors.email?.message}
+          {...register("email")}
         />
-        {errors.email && <Alert message={errors.email} />}
         <PasswordInput
-          name="Password"
-          placeholder="Enter your password"
-          value={user.password}
-          onChange={(e) => setUser({ ...user, password: e.target.value } )}
+          label="Password"
+          autoComplete="current-password"
+          error={errors.password?.message}
+          {...register("password")}
         />
-        {errors.password && <Alert message={errors.password} />}
-        <Button
-          name="Log in"
-          type="submit"
-          variant="primary"
-          fullWidth
-        />
+        <Button type="submit" fullWidth loading={isSubmitting}>
+          Log in
+        </Button>
       </form>
-      <p className="mt-4 pt-5 border-t border-border-color text-center text-gray-600">
+
+      <hr className="my-6 border-border" />
+
+      <p className="text-center text-sm text-muted">
         New to Stockly?{" "}
-        <a
-          href="/register"
-          className="text-primary font-semibold hover:underline"
+        <Link
+          to="/register"
+          className="font-semibold text-primary hover:text-primary-hover"
         >
           Create an account
-        </a>
+        </Link>
       </p>
     </AuthCard>
   );

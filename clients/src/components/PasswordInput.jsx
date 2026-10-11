@@ -1,25 +1,27 @@
+import { forwardRef, useState } from "react";
 import Input from "./Input";
 
-export default function PasswordInput({ name, placeholder }) {
+const PasswordInput = forwardRef(function PasswordInput(props, ref) {
+  const [visible, setVisible] = useState(false);
+
   return (
-    <div className="relative">
-      <Input
-        name={name}
-        placeholder={placeholder}
-        type="password"
-      />
-      <button
-        type="button"
-        className="absolute right-3 top-1/2 text-md text-primary hover:text-primary-hover hover:cursor-pointer"
-        onClick={() => {
-          const input = document.getElementById(name);
-          if (input) {
-            input.type = input.type === "password" ? "text" : "password";
-          }
-        }}
-      >
-        Show
-      </button>
-    </div>
+    <Input
+      ref={ref}
+      type={visible ? "text" : "password"}
+      endAdornment={
+        <button
+          type="button"
+          onClick={() => setVisible((v) => !v)}
+          aria-pressed={visible}
+          className="rounded-sm px-2 py-1 text-xs font-semibold text-primary
+            hover:text-primary-hover focus-visible:outline-2 focus-visible:outline-primary"
+        >
+          {visible ? "Hide" : "Show"}
+        </button>
+      }
+      {...props}
+    />
   );
-}
+});
+
+export default PasswordInput;

@@ -14,7 +14,7 @@ const registerClass = () =>
 
 export default function PublicNavbar() {
   return (
-    <header className="sticky top-0 z-40 border-b bg-surface">
+    <header className="sticky top-0 z-40 border-b border-border bg-surface">
       <nav
         aria-label="Main"
         className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6"
