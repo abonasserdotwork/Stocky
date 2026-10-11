@@ -79,8 +79,8 @@ Stockly helps small and medium businesses track products, manage stock levels, r
 > Planned layout. It may change as the project evolves.
 
 ```
-stockly/
-├── client/                 # React frontend (Vite + Tailwind)
+Stocky/
+├── clients/                # React frontend (Vite + Tailwind)
 │   ├── src/
 │   │   ├── components/     # Shared UI components
 │   │   ├── context/        # AuthContext
@@ -97,7 +97,7 @@ stockly/
 │   │   ├── controllers/
 │   │   ├── services/       # Product, stock, and sales logic
 │   │   ├── routes/
-│   │   ├── middleware/     # Auth, roles, error handling
+│   │   ├── middlewares/    # Auth and error handling
 │   │   └── tests/
 │   └── ...
 └── README.md
@@ -120,50 +120,41 @@ stockly/
 ```bash
 # 1. Clone the repository
 git clone <repository-url>
-cd stockly
+cd Stocky
 
-# 2. Install backend dependencies
-cd server
+# 2. Install root, backend, and frontend dependencies
 npm install
-
-# 3. Install frontend dependencies
-cd ../client
-npm install
+npm install --prefix server
+npm install --prefix clients
 ```
 
 ### Running locally
 
 ```bash
-# Backend (from /server)
+# Start backend and frontend together from the repository root
 npm run dev
 
-# Frontend (from /client)
-npm run dev
+# Or run either app separately from the repository root
+npm run server
+npm run client
 ```
-
-> Script names may differ once the setup is finalized in Week 1. Update this section accordingly.
 
 ---
 
 ## Environment Variables
 
-Create a `.env` file in `/server`:
+Create `server/.env` for backend configuration:
 
 ```
 PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
-JWT_EXPIRES_IN=7d
 CLIENT_URL=http://localhost:5173
+MONGO_URI=mongodb://127.0.0.1:27017/stocky
+JSON_WEB_TOKEN_SECRET=replace_with_a_long_random_secret
 ```
 
-Create a `.env` file in `/client`:
+Use `server/.env.example` as a starting point. The frontend currently does not read any app-specific environment variables, so it does not need a `.env` file. If frontend configuration is added later, keep it in `clients/.env` and expose only non-secret values prefixed with `VITE_`; Vite embeds these values in browser assets.
 
-```
-VITE_API_BASE_URL=http://localhost:5000/api
-```
-
-> Never commit `.env` files. Share secrets with the team through a secure channel.
+Never commit `.env` files or put database credentials, signing keys, or other secrets in frontend configuration. Share backend secrets through a secure channel.
 
 ---
 
