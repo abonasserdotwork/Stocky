@@ -1,47 +1,46 @@
-const variantClasses = {
-  default: {
-    container: "",
-    input:
-      "w-full rounded-lg border-2 border-border-color bg-surface px-3 py-2 my-2 h-11 placeholder:text-muted placeholder:opacity-70",
-  },
-  search: {
-    container:
-      "flex h-[26px] min-w-0 max-w-[360px] flex-1 items-center gap-2 rounded-md border border-border-color bg-page px-2",
-    input:
-      "w-full min-w-0 bg-transparent text-[10px] text-ink outline-none placeholder:text-muted",
-  },
-};
+import { forwardRef, useId } from "react";
+import { AlertCircle } from "lucide-react";
 
-export default function Input({
-  name,
-  placeholder,
-  value,
-  onChange,
-  type = "text",
-  variant = "default",
-  labelClassName = "",
-  leadingIcon,
-}) {
-  const styles = variantClasses[variant] ?? variantClasses.default;
+const Input = forwardRef(function Input(
+  { label, error, endAdornment, className = "", id, ...props },
+  ref
+) {
+  const autoId = useId();
+  const inputId = id || autoId;
+  const errorId = `${inputId}-error`;
 
   return (
-    <div className={styles.container}>
-      <label
-        htmlFor={name}
-        className={`block text-sm font-medium text-muted mb-1 ${labelClassName}`}
-      >
-        {name}
+    <div className={className}>
+      <label htmlFor={inputId} className="mb-1.5 block text-sm font-medium text-ink">
+        {label}
       </label>
-      {leadingIcon}
-      <input
-        className={styles.input}
-        name={name}
-        id={name}
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-      />
+      <div className="relative">
+        <input
+          ref={ref}
+          id={inputId}
+          aria-invalid={error ? "true" : "false"}
+          aria-describedby={error ? errorId : undefined}
+          className={`h-11 w-full rounded-md border bg-surface px-3 text-sm text-ink
+            placeholder:text-muted
+            focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-primary
+            ${endAdornment ? "pr-20" : ""}
+            ${error ? "border-danger" : "border-border"}`}
+          {...props}
+        />
+        {endAdornment && (
+          <div className="absolute inset-y-0 right-0 flex items-center pr-2">
+            {endAdornment}
+          </div>
+        )}
+      </div>
+      {error && (
+        <p id={errorId} className="mt-1.5 flex items-start gap-1.5 text-xs font-medium text-danger">
+          <AlertCircle className="mt-px h-4 w-4 shrink-0 text-danger" aria-hidden="true" />
+          {error}
+        </p>
+      )}
     </div>
   );
-}
+});
+
+export default Input;

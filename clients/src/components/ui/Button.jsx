@@ -1,35 +1,35 @@
+import { Loader2 } from "lucide-react";
 
-
-const variantClasses = {
-  primary: "bg-primary text-surface hover:bg-primary-hover",
-};
-
-const sizeClasses = {
-  sm: "h-[26px] rounded-md px-3 text-[10px]",
-  md: "h-11 rounded-lg px-4 text-sm",
+const variants = {
+  primary:
+    "bg-primary text-white hover:bg-primary-hover border border-transparent",
+  outline:
+    "bg-surface text-primary border border-primary hover:bg-page",
 };
 
 export default function Button({
-  name,
+  variant = "primary",
+  loading = false,
+  fullWidth = false,
+  disabled,
+  className = "",
   children,
   type = "button",
-  variant = "primary",
-  size = "md",
-  fullWidth,
-  onClick,
-  className = "",
+  ...props
 }) {
   return (
     <button
-      className={`inline-flex items-center justify-center gap-1 font-semibold transition-colors ${
-        variantClasses[variant] ?? variantClasses.primary
-      } ${sizeClasses[size] ?? sizeClasses.md} ${
-        fullWidth ? "w-full" : ""
-      } ${className}`}
       type={type}
-      onClick={onClick}
+      disabled={disabled || loading}
+      aria-busy={loading}
+      className={`inline-flex h-11 items-center justify-center gap-2 rounded-md px-4 text-sm font-semibold
+        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary
+        disabled:cursor-not-allowed disabled:opacity-60
+        ${variants[variant]} ${fullWidth ? "w-full" : ""} ${className}`}
+      {...props}
     >
-      {children ?? name}
+      {loading && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
+      {children}
     </button>
   );
 }

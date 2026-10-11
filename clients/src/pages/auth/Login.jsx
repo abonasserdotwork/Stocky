@@ -2,11 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import AuthCard from "../../components/AuthCard";
-import Alert from "../../components/Alert";
-import Input from "../../components/Input";
-import PasswordInput from "../../components/PasswordInput";
-import Button from "../../components/Button";
+import AuthCard from "../../components/ui/AuthCard";
+import Alert from "../../components/ui/Alert";
+import Input from "../../components/ui/Input";
+import PasswordInput from "../../components/ui/PasswordInput";
+import Button from "../../components/ui/Button";
 import { loginSchema } from "../../schemas/authSchemas";
 
 export default function Login() {
