@@ -2,7 +2,7 @@ import { forwardRef, useId } from "react";
 import { AlertCircle } from "lucide-react";
 
 const Input = forwardRef(function Input(
-  { label, error, endAdornment, className = "", id, ...props },
+  { label, placeholder = "", error, endAdornment, className = "", id, ...props },
   ref
 ) {
   const autoId = useId();
@@ -18,6 +18,7 @@ const Input = forwardRef(function Input(
         <input
           ref={ref}
           id={inputId}
+          placeholder={placeholder}
           aria-invalid={error ? "true" : "false"}
           aria-describedby={error ? errorId : undefined}
           className={`h-11 w-full rounded-md border bg-surface px-3 text-sm text-ink

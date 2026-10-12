@@ -32,12 +32,14 @@ export default function Login() {
         <Input
           label="Email"
           type="email"
+          placeholder="Enter your email"
           autoComplete="email"
           error={errors.email?.message}
           {...register("email")}
         />
         <PasswordInput
           label="Password"
+          placeholder="Enter your password"
           autoComplete="current-password"
           error={errors.password?.message}
           {...register("password")}
