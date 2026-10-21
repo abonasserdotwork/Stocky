@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { createRoot } from "react-dom/client";
+import { AuthProvider } from "./context/AuthContext";
 import "@fontsource-variable/manrope";
 import "./index.css";
 import App from "./App.jsx";
