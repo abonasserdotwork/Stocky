@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import AuthCard from "../../components/ui/AuthCard";
@@ -8,9 +8,13 @@ import Input from "../../components/ui/Input";
 import PasswordInput from "../../components/ui/PasswordInput";
 import Button from "../../components/ui/Button";
 import { loginSchema } from "../../schemas/authSchemas";
+import { useAuth } from "../../context/AuthContext";
+import { getErrorMessage } from "../../utils/getErrorMessage";
 
 export default function Login() {
   const [serverError, setServerError] = useState("");
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
   const {
     register,
@@ -18,14 +22,18 @@ export default function Login() {
     formState: { errors, isSubmitting },
   } = useForm({ resolver: zodResolver(loginSchema) });
 
-  // Runs only when the form passes all schema rules
-  const onSubmit = (data) => {
-    console.log("Login data:", data);
-    setServerError("Login is not connected to the server yet.");
+  const onSubmit = async (data) => {
+    setServerError("");
+    try {
+      await login(data);
+      navigate("/");
+    } catch (error) {
+      setServerError(getErrorMessage(error));
+    }
   };
 
   return (
-    <AuthCard title="Log in" subtitle="Welcome back to Stockly!">
+    <AuthCard title="Log in" subtitle="Welcome back to Stockly">
       <Alert>{serverError}</Alert>
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
