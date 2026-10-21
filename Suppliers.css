@@ -1,0 +1,15 @@
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 18px;
+}
+
+.pagination-container p {
+    margin: 0;
+    font-size: 14px;
+    color: #59665e;
+}
+#last-p span{
+    font-weight: bold;
+}
