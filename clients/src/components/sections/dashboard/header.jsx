@@ -1,60 +1,60 @@
 
 import { Search, Bell, Plus } from "lucide-react";
-import Button from "../../ui/Button.jsx";
-import Input from "../../ui/Input.jsx";
 
 export default function Header() {
     return (
-        <header className="flex h-[54px] w-full items-center justify-between gap-3 border-b border-border-color bg-surface px-5">
-            {/* Search */}
-            <Input
-                name="Search"
-                placeholder="Search for product or supplier..."
-                variant="search"
-                labelClassName="sr-only"
-                leadingIcon={<Search size={13} className="shrink-0 text-muted" />}
-            />
+        <header className="flex h-16 min-w-0 items-center justify-between gap-3 border-b border-border bg-surface px-3 sm:px-5">
+            <label className="relative min-w-0 flex-1 sm:max-w-md">
+                <span className="sr-only">Search products or suppliers</span>
+                <Search
+                    size={17}
+                    aria-hidden="true"
+                    className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-muted"
+                />
+                <input
+                    type="search"
+                    placeholder="Search products or suppliers..."
+                    className="h-10 w-full rounded-lg border border-border bg-page/50 pl-10 pr-3 text-sm text-ink outline-none transition placeholder:text-muted/80 focus:border-primary focus:bg-surface focus:ring-2 focus:ring-primary/10"
+                />
+            </label>
 
-            {/* Right Actions */}
-            <div className="flex shrink-0 items-center gap-4">
-                {/* Notifications */}
+            <div className="flex shrink-0 items-center gap-2 sm:gap-4">
                 <button
                     type="button"
                     aria-label="Notifications"
-                    className="relative flex h-7 w-7 items-center justify-center rounded-md text-muted hover:bg-page"
+                    className="relative flex h-10 w-10 items-center justify-center rounded-lg text-muted transition hover:bg-page hover:text-ink"
                 >
-                    <Bell size={15} strokeWidth={1.8} />
+                    <Bell size={18} strokeWidth={1.8} />
 
-                    <span className="absolute right-0.5 top-0.5 flex h-[13px] min-w-[13px] items-center justify-center rounded-full bg-danger px-0.5 text-[8px] font-semibold text-surface">
+                    <span className="absolute right-1 top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-danger px-1 text-[9px] font-bold text-surface">
                         3
                     </span>
                 </button>
 
-                {/* New Order */}
-                <Button
-                    type="button"
-                    size="sm"
-                >
-                    <Plus size={13} strokeWidth={2.5} />
-                    <span>New Order</span>
-                </Button>
-
-                {/* User Profile */}
                 <button
                     type="button"
-                    className="flex items-center gap-2 text-left"
+                    className="hidden h-10 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-hover sm:inline-flex"
+                >
+                    <Plus size={16} strokeWidth={2.5} aria-hidden="true" />
+                    <span>New Order</span>
+                </button>
+
+                <button
+                    type="button"
+                    className="flex items-center gap-2 rounded-lg p-1 text-left transition hover:bg-page"
+                    aria-label="User profile: Bloom & Timber Craft Co., Inventory Admin"
                 >
                     <img
                         src="https://i.pravatar.cc/80?img=47"
                         alt="User avatar"
-                        className="h-7 w-7 rounded-full border border-border-color object-cover"
+                        className="h-9 w-9 rounded-full border border-border object-cover"
                     />
 
-                    <div className="hidden min-w-0 sm:block">
-                        <p className="whitespace-nowrap text-[10px] font-semibold leading-3 text-ink">
+                    <div className="hidden min-w-0 lg:block">
+                        <p className="whitespace-nowrap text-xs font-semibold leading-4 text-ink">
                             Bloom & Timber Craft Co.
                         </p>
-                        <p className="mt-0.5 whitespace-nowrap text-[9px] leading-3 text-muted">
+                        <p className="mt-0.5 whitespace-nowrap text-xs leading-4 text-muted">
                             Inventory Admin
                         </p>
                     </div>
