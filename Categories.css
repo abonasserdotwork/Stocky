@@ -1,0 +1,177 @@
+/* Palette — move these to your global layout CSS so every page shares them */
+:root {
+  --forest: #3f7d5c;
+  --deep-forest: #2e5e45;
+  --pine: #1f3d2e;
+  --sage: #8fb996;
+  --mist: #f6f8f4;
+  --white: #ffffff;
+  --fern-mist: #dde5da;
+  --charcoal: #1f2a24;
+  --stone: #5f6f65;
+  --sand: #e9dfc7;
+  --clay-red: #c65d4e;
+  --focus-ring: rgba(63, 125, 92, 0.4);
+}
+
+.cat-page {
+  padding: 24px;
+  color: var(--charcoal);
+  max-width: 1100px;
+}
+
+.cat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.cat-header h1 { margin: 0 0 4px; font-size: 1.5rem; }
+.cat-header p { margin: 0; }
+.cat-muted { color: var(--stone); font-size: 0.9rem; }
+
+.cat-card {
+  background: var(--white);
+  border: 1px solid var(--fern-mist);
+  border-radius: 10px;
+}
+
+.cat-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--fern-mist);
+}
+.cat-toolbar .cat-input { max-width: 320px; }
+
+/* Buttons */
+.cat-btn {
+  font: inherit;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--fern-mist);
+  background: var(--white);
+  color: var(--charcoal);
+  cursor: pointer;
+}
+.cat-btn:hover { background: var(--mist); }
+.cat-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.cat-btn-sm { padding: 5px 12px; font-size: 0.85rem; margin-inline-start: 6px; }
+
+.cat-btn-primary { background: var(--forest); border-color: var(--forest); color: var(--white); }
+.cat-btn-primary:hover { background: var(--deep-forest); border-color: var(--deep-forest); }
+
+.cat-btn-danger { background: var(--clay-red); border-color: var(--clay-red); color: var(--white); }
+.cat-btn-danger:hover { background: #ad4b3d; border-color: #ad4b3d; }
+.cat-btn-danger-outline { color: var(--clay-red); border-color: var(--clay-red); }
+.cat-btn-danger-outline:hover { background: #fbefed; }
+
+/* Inputs */
+.cat-input {
+  width: 100%;
+  font: inherit;
+  padding: 9px 12px;
+  border: 1px solid var(--fern-mist);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--charcoal);
+  box-sizing: border-box;
+}
+.cat-input-error { border-color: var(--clay-red); }
+
+.cat-btn:focus-visible,
+.cat-input:focus-visible {
+  outline: none;
+  border-color: var(--forest);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+/* Table */
+.cat-table-wrap { overflow-x: auto; }
+.cat-table { width: 100%; border-collapse: collapse; }
+.cat-table th,
+.cat-table td {
+  text-align: start;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--fern-mist);
+}
+.cat-table th { font-size: 0.85rem; color: var(--stone); font-weight: 600; }
+.cat-table tbody tr:last-child td { border-bottom: none; }
+.cat-table tbody tr:hover { background: var(--mist); }
+.cat-name { font-weight: 600; }
+.cat-actions-col { text-align: end; white-space: nowrap; }
+
+.cat-badge {
+  display: inline-block;
+  min-width: 28px;
+  text-align: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--sage);
+  color: var(--pine);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* States */
+.cat-state { padding: 32px 16px; text-align: center; color: var(--stone); }
+.cat-state .cat-btn { margin-top: 8px; }
+.cat-empty {
+  margin: 16px;
+  padding: 40px 16px;
+  text-align: center;
+  background: var(--sand);
+  border-radius: 10px;
+}
+.cat-empty h2 { margin: 0 0 6px; font-size: 1.1rem; }
+.cat-empty p { margin: 0 0 16px; color: var(--pine); }
+
+/* Modal */
+.cat-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(31, 61, 46, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 50;
+}
+.cat-modal {
+  width: 100%;
+  max-width: 440px;
+  background: var(--white);
+  border-radius: 12px;
+  padding: 24px;
+}
+.cat-modal h2 { margin: 0 0 16px; font-size: 1.15rem; }
+.cat-modal p { margin: 0 0 8px; line-height: 1.5; }
+.cat-field { display: block; margin-bottom: 14px; }
+.cat-field > span:first-child { display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.9rem; }
+.cat-error { display: block; margin-top: 6px; color: var(--clay-red); font-size: 0.85rem; }
+.cat-modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 20px; }
+
+/* Toast */
+.cat-toast:empty { display: none; }
+.cat-toast {
+  position: fixed;
+  bottom: 24px;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  background: var(--pine);
+  color: var(--white);
+  padding: 10px 18px;
+  border-radius: 8px;
+  z-index: 60;
+}
+
+@media (max-width: 640px) {
+  .cat-page { padding: 16px; }
+  .cat-header { flex-direction: column; }
+  .cat-hide-sm { display: none; }
+  .cat-toolbar .cat-input { max-width: none; }
+}
