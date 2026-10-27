@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 
-
-
 const btn =
   "inline-flex items-center justify-center rounded-md px-5 py-2.5 text-sm font-semibold transition-colors";
 
