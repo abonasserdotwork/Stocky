@@ -45,14 +45,14 @@ export default function Header() {
                     aria-label="User profile: Bloom & Timber Craft Co., Inventory Admin"
                 >
                     <img
-                        src="https://i.pravatar.cc/80?img=47"
+                        src="./././././logo-mark.svg"
                         alt="User avatar"
                         className="h-9 w-9 rounded-full border border-border object-cover"
                     />
 
                     <div className="hidden min-w-0 lg:block">
                         <p className="whitespace-nowrap text-xs font-semibold leading-4 text-ink">
-                            Bloom & Timber Craft Co.
+                            User
                         </p>
                         <p className="mt-0.5 whitespace-nowrap text-xs leading-4 text-muted">
                             Inventory Admin
