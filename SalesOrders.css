@@ -1,0 +1,194 @@
+.sales-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px 40px;
+  background: #f5f7f4;
+  min-height: 100vh;
+  color: #1f2a24;
+}
+
+/* العنوان */
+.sales-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+.sales-header h1 { margin: 0; font-size: 32px; }
+.sales-header p  { margin: 6px 0 0; color: #5d6b63; }
+
+.new-sale-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #2f6b4f;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.new-sale-btn:hover { background: #265a42; }
+
+/* كروت الإحصائيات */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.stat-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #e3e9e5;
+  border-radius: 16px;
+}
+.stat-label { margin: 0 0 8px; color: #5d6b63; font-size: 14px; }
+.stat-value { margin: 0; font-size: 34px; font-weight: 700; }
+.stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: #e3f2e8;
+  color: #2f6b4f;
+}
+
+/* الـ Toolbar */
+.sales-toolbar {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #e3e9e5;
+  border-radius: 16px;
+}
+.sales-search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  background: #f5f7f4;
+  border: 1px solid #e3e9e5;
+  border-radius: 8px;
+  color: #6b7a71;
+}
+.sales-search input {
+  flex: 1;
+  padding: 12px 0;
+  border: none;
+  background: none;
+  font: inherit;
+  outline: none;
+}
+.sales-toolbar select {
+  padding: 0 16px;
+  background: #f5f7f4;
+  border: 1px solid #e3e9e5;
+  border-radius: 8px;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* الجدول */
+.sales-card {
+  background: #fff;
+  border: 1px solid #e3e9e5;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.sales-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.sales-table th {
+  padding: 18px 24px;
+  background: #f5f7f4;
+  border-bottom: 1px solid #e3e9e5;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #4b5b52;
+}
+.sales-table td {
+  padding: 22px 24px;
+  border-bottom: 1px solid #edf1ee;
+}
+.sales-table tbody tr:hover { background: #f8faf8; }
+
+.invoice-id { color: #2f6b4f; font-weight: 600; }
+.amount     { font-weight: 600; }
+.muted      { color: #5d6b63; }
+.actions-cell { text-align: right !important; }
+
+.view-link {
+  background: none;
+  border: none;
+  color: #2f6b4f;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+}
+.view-link:hover { text-decoration: underline; }
+
+/* شارات الحالة */
+.sale-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.sale-completed { background: #e3f2e8; color: #2f6b4f; }
+.sale-pending   { background: #fdf1de; color: #c98a1b; }
+.sale-cancelled { background: #fbe6e4; color: #c0392b; }
+
+/* الفوتر والـ Pagination */
+.sales-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  color: #5d6b63;
+}
+.sales-footer p { margin: 0; }
+.sales-footer strong { color: #1f2a24; font-weight: 500; }
+
+.sales-pagination { display: flex; gap: 8px; }
+.pg-btn {
+  min-width: 40px;
+  padding: 9px 14px;
+  background: #fff;
+  border: 1px solid #e3e9e5;
+  border-radius: 8px;
+  font: inherit;
+  cursor: pointer;
+}
+.pg-btn:hover:not(:disabled) { background: #f5f7f4; }
+.pg-btn.active { background: #2f6b4f; border-color: #2f6b4f; color: #fff; }
+.pg-btn:disabled { color: #aab4ad; cursor: not-allowed; }
+
+.sales-empty {
+  padding: 48px;
+  text-align: center;
+  color: #5d6b63;
+}
+
+/* موبايل */
+@media (max-width: 900px) {
+  .sales-page { padding: 16px; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .sales-toolbar { flex-direction: column; }
+  .sales-toolbar select { padding: 12px 16px; }
+  .sales-card { overflow-x: auto; }
+  .sales-footer { flex-direction: column; gap: 12px; }
+}
