@@ -82,14 +82,14 @@ export default function Categories() {
   };
 
   return (
-    <section className="w-full  p-4 text-[#1f2a24] sm:p-6">
+    <section className="w-full p-4 text-ink sm:p-6">
       <header className="mb-5 flex flex-col items-start justify-between gap-4 sm:flex-row">
         <div>
           <h1 className="mb-1 text-2xl font-bold">
             Categories
           </h1>
 
-          <p className="text-sm text-[#5f6f65]">
+          <p className="text-sm text-muted">
             Group your products so they're easier to find and report on.
           </p>
         </div>
@@ -97,13 +97,13 @@ export default function Categories() {
         <button
           type="button"
           onClick={() => setEditing({})}
-          className="rounded-lg border border-[#3f7d5c] bg-[#3f7d5c] px-4 py-2.5 font-semibold text-white transition hover:border-[#2e5e45] hover:bg-[#2e5e45] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#3f7d5c]/40"
+          className="rounded-lg border border-primary bg-primary px-4 py-2.5 font-semibold text-surface transition hover:border-primary-hover hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/40"
         >
           Add category
         </button>
       </header>
 
-      <div className="overflow-hidden rounded-xl border border-[#dde5da] bg-white">
+      <div className="overflow-hidden rounded-xl border border-border bg-surface">
         <CategoryToolbar
           query={query}
           onQueryChange={setQuery}
@@ -112,17 +112,17 @@ export default function Categories() {
         />
 
         {isLoading ? (
-          <p className="px-4 py-10 text-center text-sm text-[#5f6f65]">
+          <p className="px-4 py-10 text-center text-sm text-muted">
             Loading categories...
           </p>
         ) : error ? (
-          <div className="px-4 py-10 text-center text-sm text-[#5f6f65]">
+          <div className="px-4 py-10 text-center text-sm text-muted">
             <p>{error}</p>
 
             <button
               type="button"
               onClick={refresh}
-              className="mt-3 rounded-lg border border-[#dde5da] px-4 py-2 font-semibold hover:bg-[#f6f8f4]"
+              className="mt-3 rounded-lg border border-border px-4 py-2 font-semibold hover:bg-page"
             >
               Try again
             </button>

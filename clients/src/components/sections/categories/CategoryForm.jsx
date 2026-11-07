@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const inputClass =
-  "w-full rounded-lg border border-[#dde5da] bg-white px-3 py-2.5 text-sm text-[#1f2a24] outline-none transition focus:border-[#3f7d5c] focus:ring-4 focus:ring-[#3f7d5c]/20";
+  "w-full rounded-lg border border-border bg-surface px-3 py-2.5 text-sm text-ink outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/20";
 
 export default function CategoryForm({
   category,
@@ -63,13 +63,13 @@ export default function CategoryForm({
   return (
     <form onSubmit={submit} noValidate>
       <label className="mb-4 block">
-        <span className="mb-1.5 block text-sm font-semibold text-[#1f2a24]">
+        <span className="mb-1.5 block text-sm font-semibold text-ink">
           Name
         </span>
 
         <input
           ref={nameRef}
-          className={`${inputClass} ${error ? "border-[#c65d4e]" : ""}`}
+          className={`${inputClass} ${error ? "border-danger" : ""}`}
           value={name}
           onChange={(event) => {
             setName(event.target.value);
@@ -82,7 +82,7 @@ export default function CategoryForm({
         {error && (
           <span
             id="category-name-error"
-            className="mt-1.5 block text-xs text-[#c65d4e]"
+            className="mt-1.5 block text-xs text-danger"
           >
             {error}
           </span>
@@ -90,7 +90,7 @@ export default function CategoryForm({
       </label>
 
       <label className="mb-4 block">
-        <span className="mb-1.5 block text-sm font-semibold text-[#1f2a24]">
+        <span className="mb-1.5 block text-sm font-semibold text-ink">
           Description (optional)
         </span>
 
@@ -106,7 +106,7 @@ export default function CategoryForm({
         <button
           type="button"
           onClick={onClose}
-          className="rounded-lg border border-[#dde5da] px-4 py-2 font-semibold text-[#1f2a24] transition hover:bg-[#f6f8f4]"
+          className="rounded-lg border border-border px-4 py-2 font-semibold text-ink transition hover:bg-page"
         >
           Cancel
         </button>
@@ -114,7 +114,7 @@ export default function CategoryForm({
         <button
           type="submit"
           disabled={isSaving}
-          className="rounded-lg border border-[#3f7d5c] bg-[#3f7d5c] px-4 py-2 font-semibold text-white transition hover:border-[#2e5e45] hover:bg-[#2e5e45] disabled:cursor-not-allowed disabled:opacity-60"
+          className="rounded-lg border border-primary bg-primary px-4 py-2 font-semibold text-surface transition hover:border-primary-hover hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isSaving
             ? "Saving..."

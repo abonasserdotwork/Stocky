@@ -11,7 +11,7 @@ export default function CategoryModal({ title, onClose, children }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-[#1f3d2e]/45 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-sidebar/45 p-4"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
@@ -20,11 +20,11 @@ export default function CategoryModal({ title, onClose, children }) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="category-modal-title"
-        className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl"
+        className="w-full max-w-md rounded-xl bg-surface p-6 shadow-xl"
       >
         <h2
           id="category-modal-title"
-          className="mb-4 text-lg font-bold text-[#1f2a24]"
+          className="mb-4 text-lg font-bold text-ink"
         >
           {title}
         </h2>

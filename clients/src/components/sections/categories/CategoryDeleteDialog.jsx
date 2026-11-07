@@ -17,7 +17,7 @@ export default function CategoryDeleteDialog({
     >
       {hasProducts ? (
         <>
-          <p className="text-sm leading-6 text-[#1f2a24]">
+          <p className="text-sm leading-6 text-ink">
             "{category.name}" has {category.products_count} products.
             You can't delete this category until those products
             are moved or deleted.
@@ -27,7 +27,7 @@ export default function CategoryDeleteDialog({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg border border-[#dde5da] px-4 py-2 font-semibold hover:bg-[#f6f8f4]"
+              className="rounded-lg border border-border px-4 py-2 font-semibold hover:bg-page"
             >
               Close
             </button>
@@ -35,7 +35,7 @@ export default function CategoryDeleteDialog({
         </>
       ) : (
         <>
-          <p className="text-sm leading-6 text-[#1f2a24]">
+          <p className="text-sm leading-6 text-ink">
             Delete "{category.name}"? This can't be undone.
           </p>
 
@@ -43,7 +43,7 @@ export default function CategoryDeleteDialog({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg border border-[#dde5da] px-4 py-2 font-semibold hover:bg-[#f6f8f4]"
+              className="rounded-lg border border-border px-4 py-2 font-semibold hover:bg-page"
             >
               Cancel
             </button>
@@ -51,7 +51,7 @@ export default function CategoryDeleteDialog({
             <button
               type="button"
               onClick={onConfirm}
-              className="rounded-lg border border-[#c65d4e] bg-[#c65d4e] px-4 py-2 font-semibold text-white transition hover:bg-[#ad4b3d]"
+              className="rounded-lg border border-danger bg-danger px-4 py-2 font-semibold text-surface transition hover:bg-danger/90"
             >
               Delete category
             </button>

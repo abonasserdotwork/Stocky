@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import AuthCard from "../../components/ui/AuthCard";
@@ -8,6 +8,7 @@ import Input from "../../components/ui/Input";
 import PasswordInput from "../../components/ui/PasswordInput";
 import Button from "../../components/ui/Button";
 import { registerSchema } from "../../schemas/authSchemas";
+import DashboardLayout from "../../layouts/DashboardLayout";
 
 export default function Register() {
   const [serverError, setServerError] = useState("");
@@ -21,7 +22,9 @@ export default function Register() {
   // Runs only when the form passes all schema rules
   const onSubmit = (data) => {
     console.log("Register data:", data);
-    setServerError("Register is not connected to the server yet.");
+    // Server request but now it direcltly redirects to the dashboard page.
+    
+    <Route path="/dashboard" element={<DashboardLayout />}></Route>
   };
 
   return (
