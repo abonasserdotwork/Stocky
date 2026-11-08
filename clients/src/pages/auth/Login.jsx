@@ -26,7 +26,7 @@ export default function Login() {
     setServerError("");
     try {
       await login(data);
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       setServerError(getErrorMessage(error));
     }

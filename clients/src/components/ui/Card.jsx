@@ -1,9 +1,10 @@
-import React from 'react'
-
-export default function Card() {
+export default function Card({ as: Component = "div", className = "", children, ...props }) {
   return (
-    <div className='skeleton'>
-        
-    </div>
-  )
+    <Component
+      className={`rounded-xl border border-border bg-surface shadow-card ${className}`}
+      {...props}
+    >
+      {children}
+    </Component>
+  );
 }
