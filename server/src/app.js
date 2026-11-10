@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 const app = express();
+const mongoose = require("mongoose");
 
 
 
@@ -41,7 +42,15 @@ apiRouter.use("/auth", authRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-
+async function connectDB() {
+  await mongoose.connect("mongodb+srv://abdaltwabsayed89_db_user:xpri1GWTDir5hLDT@stockly.7hhitwd.mongodb.net/");
+  console.log("connected to db successfuly on port 27017");
+}
+ 
+connectDB();
+ 
+ 
+ 
 //STARTING SERVER
 
 async function startServer() {
