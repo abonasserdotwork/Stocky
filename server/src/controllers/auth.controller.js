@@ -56,7 +56,7 @@ const loginUser = async (req, res) => {
     });
 
     return res.status(200).json({
-        success: true, message: "User logged in successfully", accessToken: token, user: {
+        success: true, message: "User logged in successfully", token: token, user: {
             id: user._id,
             name: user.name,
             email: user.email,
@@ -136,7 +136,7 @@ const refreshUser = async (req, res) => {
 
         return res.status(200).json({
             success: true,
-            accessToken,
+            token: accessToken,
         });
     } catch (err) {
         console.error("Refresh Controller Error:", err);
@@ -200,7 +200,6 @@ const getCurrentUser = async (req, res) => {
     if (!req.user) return res.status(400).json({ success: false, message: "you need to login" });
 
     return res.status(200).json({
-        success: true,
         user: {
             name: req.user.name,
             isAdmin: req.user.isAdmin,

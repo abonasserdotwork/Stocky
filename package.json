@@ -1,14 +1,14 @@
 {
-  "name": "stocky",
+  "name": "stockly",
   "version": "1.0.0",
   "description": "**Inventory Management System built with the MERN stack**",
-  "homepage": "https://github.com/abonasserdotwork/Stocky#readme",
+  "homepage": "https://github.com/abonasserdotwork/Stockly#readme",
   "bugs": {
-    "url": "https://github.com/abonasserdotwork/Stocky/issues"
+    "url": "https://github.com/abonasserdotwork/Stockly/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abonasserdotwork/Stocky.git"
+    "url": "git+https://github.com/abonasserdotwork/Stockly.git"
   },
   "license": "ISC",
   "author": "",

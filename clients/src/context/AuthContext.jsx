@@ -40,7 +40,7 @@ export function AuthProvider({ children }) {
 
   const value = {
     user,
-    role: user?.role,
+    isAdmin: user.isAdmin,
     isAuthenticated: !!user,
     loading,
     login,
