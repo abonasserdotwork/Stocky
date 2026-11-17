@@ -148,11 +148,13 @@ Create `server/.env` for backend configuration:
 ```
 PORT=5000
 CLIENT_URL=http://localhost:5173
-MONGO_URI=mongodb://127.0.0.1:27017/stocky
-JSON_WEB_TOKEN_SECRET=replace_with_a_long_random_secret
+MONGO_URI="mongodb+srv://abdaltwabsayed89_db_user:xpri1GWTDir5hLDT@stockly.7hhitwd.mongodb.net"
+ACCESS_TOKEN_SECRET=7c9f2a6e4b1d8f03a5c7e9b2d4f6180c9a3e5b7d1f6c2a8e4d0b9f3c7a1e5d62
+REFRESH_TOKEN_SECRET=d1f6c2a8e4d0b9f3c7a1e5d62c9f2a6e4b1d8f03a5c7e9b2d4f6180c9a3e5b7
+NODE_ENV=development
 ```
 
-Use `server/.env.example` as a starting point. If frontend configuration is added later, keep it in `clients/.env` and expose only non-secret values prefixed with `VITE_`; Vite embeds these values in browser assets.
+Use `server/.env` as a starting point. If frontend configuration is added later, keep it in `clients/.env` and expose only non-secret values prefixed with `VITE_`; Vite embeds these values in browser assets.
 
 Never commit `.env` files or put database credentials, signing keys, or other secrets in frontend configuration. Share backend secrets through a secure channel.
 
