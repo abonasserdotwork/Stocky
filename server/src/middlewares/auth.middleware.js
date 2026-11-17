@@ -36,7 +36,7 @@ const protect = async (req, res, next) => {
 
     try {
         const user = await User.findById(decoded.id)
-            .select("-refreshTokens");
+            .select("-refreshToken");
 
         if (!user) {
             return res.status(401).json({

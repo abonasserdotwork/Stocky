@@ -8,29 +8,31 @@ const saveRefreshToken = async (refreshToken, user) => {
 }
 
 const registerUser = async (req, res) => {
-    const { name, email, password } = req.body;
 
-    if (!name || !email || !password) {
-        return res.status(400).json({ success: false, message: "Please provide name, email and password" });
-    }
+    const { name, email, password } = req.body;
 
     const userExists = await User.findOne({ email });
     if (userExists) {
         return res.status(400).json({ success: false, message: "User already exists" });
     }
 
-    const user = await User.create({ name, email, password });
+    const user = await User.create({ name, email, password, isAdmin: false });
 
-    return res.status(201).json({ success: true, message: "User registered successfully", user });
+    return res.status(201).json({
+        success: true,
+        message: "User registered successfully",
+        user: {
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin,
+        }
+    });
 }
 
 
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
-
-    if (!email || !password) {
-        return res.status(400).json({ success: false, message: "Please provide email and password" });
-    }
 
     const user = await User.findOne({ email }).select("+password");
     if (!user) {
@@ -201,7 +203,9 @@ const getCurrentUser = async (req, res) => {
 
     return res.status(200).json({
         user: {
+            id: req.user._id,
             name: req.user.name,
+            email: req.user.email,
             isAdmin: req.user.isAdmin,
         }
     })

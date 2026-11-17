@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import * as authService from "../services/authService";
-import { getToken, saveToken, removeToken } from "../utils/tokenStorage";
+import { refreshAccessToken } from "../services/axiosClient";
+import { saveToken, removeToken } from "../utils/tokenStorage";
 
 const AuthContext = createContext(null);
 
@@ -8,40 +9,44 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Runs once when the app starts: if a token is saved, ask the server who we are
   useEffect(() => {
     async function restoreSession() {
-      if (!getToken()) {
-        setLoading(false);
-        return;
-      }
       try {
-        const me = await authService.getMe();
-        setUser(me);
+        await refreshAccessToken(); // uses the cookie, saves a new access token
+        setUser(await authService.getMe());
       } catch {
-        removeToken(); // the saved token is no good
+        removeToken(); // no valid session: stay logged out
       } finally {
         setLoading(false);
       }
     }
     restoreSession();
+
+    const onForcedLogout = () => setUser(null);
+    window.addEventListener("auth:logout", onForcedLogout);
+    return () => window.removeEventListener("auth:logout", onForcedLogout);
   }, []);
 
   async function login(credentials) {
-    const { token, user } = await authService.login(credentials);
-    saveToken(token);
+    const { accessToken, user } = await authService.login(credentials);
+    saveToken(accessToken);
     setUser(user);
   }
 
-  function logout() {
-    removeToken();
-    setUser(null);
+  async function logout() {
+    try {
+      await authService.logout();
+    } finally {
+      removeToken();
+      setUser(null);
+    }
   }
 
   const value = {
     user,
-    isAdmin: user.isAdmin,
     isAuthenticated: !!user,
+    isAdmin: !!user?.isAdmin,
+    role: user ? (user.isAdmin ? "admin" : "user") : null,
     loading,
     login,
     logout,

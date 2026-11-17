@@ -152,7 +152,7 @@ MONGO_URI=mongodb://127.0.0.1:27017/stocky
 JSON_WEB_TOKEN_SECRET=replace_with_a_long_random_secret
 ```
 
-Use `server/.env.example` as a starting point. The frontend currently does not read any app-specific environment variables, so it does not need a `.env` file. If frontend configuration is added later, keep it in `clients/.env` and expose only non-secret values prefixed with `VITE_`; Vite embeds these values in browser assets.
+Use `server/.env.example` as a starting point. If frontend configuration is added later, keep it in `clients/.env` and expose only non-secret values prefixed with `VITE_`; Vite embeds these values in browser assets.
 
 Never commit `.env` files or put database credentials, signing keys, or other secrets in frontend configuration. Share backend secrets through a secure channel.
 

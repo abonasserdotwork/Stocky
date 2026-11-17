@@ -1,6 +1,16 @@
 import { Search, Bell, Plus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { LogOut } from "lucide-react";
+import { useAuth } from "../../../context/AuthContext";
 
 export default function Header() {
+  const { user, role, logout } = useAuth();
+  const navigate = useNavigate();
+
+  async function handleLogout() {
+    await logout();
+    navigate("/login", { replace: true });
+  }
   return (
     <header className="flex h-16 min-w-0 items-center justify-between gap-3 border-b border-border bg-surface px-3 sm:px-5">
       <label className="relative min-w-0 flex-1 sm:max-w-md">
@@ -52,13 +62,21 @@ export default function Header() {
           </div>
 
           <div className="hidden min-w-0 lg:block">
-            <p className="whitespace-nowrap text-xs font-semibold leading-4 text-ink">
-              User
+            <p className="whitespace-nowrap text-xs font-semibold leading-4 text-ink capitalize">
+              {user?.name}
             </p>
             <p className="mt-0.5 whitespace-nowrap text-xs leading-4 text-muted">
-              Inventory Admin
+              {role === "admin" ? "Admin" : "User"}
             </p>
           </div>
+        </button>
+        <button
+          type="button"
+          onClick={handleLogout}
+          className="flex items-center gap-2 rounded-lg p-1 text-left transition hover:bg-page"
+          aria-label="Log out"
+        >
+          <LogOut size={18} strokeWidth={1.8} />
         </button>
       </div>
     </header>

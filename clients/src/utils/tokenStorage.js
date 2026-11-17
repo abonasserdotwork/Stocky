@@ -1,13 +1,13 @@
-const TOKEN_KEY = "stockly_token";
+let accessToken = null;
 
 export function getToken() {
-  return localStorage.getItem(TOKEN_KEY);
+  return accessToken;
 }
 
 export function saveToken(token) {
-  localStorage.setItem(TOKEN_KEY, token);
+  accessToken = token;
 }
 
 export function removeToken() {
-  localStorage.removeItem(TOKEN_KEY);
+  accessToken = null;
 }

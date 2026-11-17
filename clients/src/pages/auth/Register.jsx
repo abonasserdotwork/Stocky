@@ -8,6 +8,8 @@ import Input from "../../components/ui/Input";
 import PasswordInput from "../../components/ui/PasswordInput";
 import Button from "../../components/ui/Button";
 import { registerSchema } from "../../schemas/authSchemas";
+import * as authService from "../../services/authService";
+import { getErrorMessage } from "../../utils/getErrorMessage";
 
 export default function Register() {
   const [serverError, setServerError] = useState("");
@@ -20,10 +22,20 @@ export default function Register() {
   } = useForm({ resolver: zodResolver(registerSchema) });
 
   // Runs only when the form passes all schema rules
-  const onSubmit = (data) => {
-    console.log("Register data:", data);
-    navigate("/dashboard");
-  };
+const onSubmit = async ({ firstName, lastName, email, password }) => {
+  setServerError("");
+  try {
+    // The backend has one "name" field, so we join the two form fields
+    await authService.register({
+      name: `${firstName} ${lastName}`.trim(),
+      email,
+      password,
+    });
+    navigate("/login");
+  } catch (error) {
+    setServerError(getErrorMessage(error));
+  }
+};
 
   return (
     <AuthCard title="Register" subtitle="Create a new account">
@@ -57,15 +69,13 @@ export default function Register() {
         <PasswordInput
           label="Password"
           placeholder="Enter your password"
-          type="password"
-          autoComplete="current-password"
+          autoComplete="new-password"
           error={errors.password?.message}
           {...register("password")}
         />
         <PasswordInput
           label="Confirm Password"
           placeholder="Confirm your password"
-          type="password"
           autoComplete="new-password"
           error={errors.confirmPassword?.message}
           {...register("confirmPassword")}
@@ -75,9 +85,9 @@ export default function Register() {
         </Button>
       </form>
       <hr className="my-6 border-border" />
-      <p className="text-sm text-muted-foreground">
+      <p className="text-center text-sm text-muted">
         Already have an account?{" "}
-        <Link to="/login" className="text-primary hover:underline">
+        <Link to="/login" className="font-semibold text-primary hover:text-primary-hover">
           Log in
         </Link>
       </p>

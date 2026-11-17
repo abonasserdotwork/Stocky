@@ -1,13 +1,21 @@
 import axiosClient from "./axiosClient";
 
-// ASSUMPTION (waiting for M1): login returns { token, user }
+// Server returns { success, accessToken, user }
 export async function login({ email, password }) {
-  const response = await axiosClient.post("/auth/login", { email, password });
-  return response.data;
+  const { data } = await axiosClient.post("/auth/login", { email, password });
+  return data;
 }
 
-// ASSUMPTION (waiting for M1): /auth/me returns the user object
+export async function register({ name, email, password }) {
+  const { data } = await axiosClient.post("/auth/register", { name, email, password });
+  return data;
+}
+
 export async function getMe() {
-  const response = await axiosClient.get("/auth/me");
-  return response.data;
+  const { data } = await axiosClient.get("/auth/me");
+  return data.user;
+}
+
+export async function logout() {
+  await axiosClient.post("/auth/logout");
 }
