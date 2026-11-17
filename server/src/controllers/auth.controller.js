@@ -58,7 +58,7 @@ const loginUser = async (req, res) => {
     });
 
     return res.status(200).json({
-        success: true, message: "User logged in successfully", token: token, user: {
+        success: true, message: "User logged in successfully", accessToken: token, user: {
             id: user._id,
             name: user.name,
             email: user.email,
@@ -138,7 +138,7 @@ const refreshUser = async (req, res) => {
 
         return res.status(200).json({
             success: true,
-            token: accessToken,
+            accessToken,
         });
     } catch (err) {
         console.error("Refresh Controller Error:", err);
