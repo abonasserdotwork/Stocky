@@ -45,9 +45,12 @@ axiosClient.interceptors.response.use(
         const token = await refreshAccessToken();
         original.headers.Authorization = `Bearer ${token}`;
         return axiosClient(original);
-      } catch {
-        removeToken();
-        window.dispatchEvent(new Event("auth:logout")); // AuthContext listens
+      } catch (refreshError) {
+        if (refreshError.response?.status === 401) {
+          removeToken();
+          window.dispatchEvent(new Event("auth:logout")); // AuthContext listens
+        }
+        return Promise.reject(refreshError);
       }
     }
     return Promise.reject(error);

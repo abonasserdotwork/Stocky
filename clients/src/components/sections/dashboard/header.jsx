@@ -76,6 +76,8 @@ export default function Header() {
           className="flex items-center gap-2 rounded-lg p-1 text-left transition hover:bg-page"
           aria-label="Log out"
         >
+          Log out
+          <span className="sr-only">Log out</span>
           <LogOut size={18} strokeWidth={1.8} />
         </button>
       </div>
