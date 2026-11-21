@@ -1,6 +1,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useCategories } from "../../hooks/useCategories";
+import { getErrorMessage } from "../../utils/getErrorMessage";
 
 import CategoryToolbar from "../../components/sections/categories/CategoryToolbar";
 import CategoryTable from "../../components/sections/categories/CategoryTable";
@@ -75,7 +76,7 @@ export default function Categories() {
       setMessage("Category deleted");
     } catch (error) {
       console.error("Failed to delete category:", error);
-      setMessage("Couldn't delete category");
+      setMessage(getErrorMessage(error));
     } finally {
       setDeleting(null);
     }

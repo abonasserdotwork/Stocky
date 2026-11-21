@@ -35,6 +35,7 @@ apiRouter.get("/health", (req, res) => {
 
 
 apiRouter.use("/auth", authRoutes);
+apiRouter.use("/categories", require("./routes/category.routes.js"));
 
 
 

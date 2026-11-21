@@ -1,5 +1,6 @@
 
 import { useEffect, useRef, useState } from "react";
+import { getErrorMessage } from "../../../utils/getErrorMessage";
 
 const inputClass =
   "w-full rounded-lg border border-border bg-surface px-3 py-2.5 text-sm text-ink outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/20";
@@ -54,7 +55,7 @@ export default function CategoryForm({
       });
     } catch (err) {
       console.error("Category form submit failed:", err);
-      setError("Couldn't save the category. Try again.");
+      setError(getErrorMessage(err));
     } finally {
       setIsSaving(false);
     }
